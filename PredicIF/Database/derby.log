@@ -12,3 +12,5 @@ os.arch=x86
 os.version=6.1
 derby.system.home=C:\Users\Slifer\Documents\Projects\DASI\PredicIF\Database
 Chargeur de classe de la base de données démarré - derby.database.classpath=''
+----------------------------------------------------------------
+Mon Feb 24 17:56:10 CET 2014 : fermeture du moteur Derby

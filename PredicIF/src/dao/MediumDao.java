@@ -41,7 +41,7 @@ public class MediumDao {
     public static List<Medium> findallMedium() 
     {
          EntityManager em = JpaUtil.obtenirEntityManager();
-        Query q = em.createQuery("SELECT m FROM Medium");
+        Query q = em.createQuery("SELECT m FROM Medium m");
         List<Medium> listsearch = q.getResultList() ;
         return listsearch;
     }

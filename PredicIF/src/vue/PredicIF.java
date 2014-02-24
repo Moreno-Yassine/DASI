@@ -74,7 +74,7 @@ public class PredicIF {
 
          LectureDonneesCsv M;
         try {
-            M = new LectureDonneesCsv("C:\\Documents and Settings\\Administrateur\\Mes documents\\NetBeansProjects\\DASI-master\\PredicIF\\src\\Données\\PredictIF-Mediums.csv");
+            M = new LectureDonneesCsv("C:\\Users\\Slifer\\Documents\\Projects\\DASI\\PredicIF\\src\\Données\\PredictIF-Mediums.csv");
             
             M.lireMedium(100);
             M.fermer();
@@ -91,7 +91,7 @@ public class PredicIF {
         
         LectureDonneesCsv L;
         try {
-            L = new LectureDonneesCsv("C:\\Documents and Settings\\Administrateur\\Mes documents\\NetBeansProjects\\DASI-master\\PredicIF\\src\\Données\\PredictIF-Clients.csv");         
+            L = new LectureDonneesCsv("C:\\Users\\Slifer\\Documents\\Projects\\DASI\\PredicIF\\src\\Données\\PredictIF-Clients.csv");         
             L.lireClients(100);           
             L.fermer();
             

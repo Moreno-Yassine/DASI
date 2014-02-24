@@ -6,7 +6,7 @@ import javax.persistence.metamodel.SingularAttribute;
 import javax.persistence.metamodel.StaticMetamodel;
 import metier.modele.Client;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2014-02-24T17:46:55")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2014-02-24T17:55:14")
 @StaticMetamodel(Medium.class)
 public class Medium_ { 
 
