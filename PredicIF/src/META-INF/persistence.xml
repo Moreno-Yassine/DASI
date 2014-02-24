@@ -5,6 +5,7 @@
     <class>metier.modele.Client</class>
     <class>metier.modele.Zodiac</class>
     <class>metier.modele.Medium</class>
+    <class>metier.modele.Prediction</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/predictif"/>
       <property name="javax.persistence.jdbc.password" value="mpompompo"/>

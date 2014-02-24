@@ -23,7 +23,10 @@ public class Medium implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int nummedium;
+    private String civilite;
     private String nom;
+    private String talent;
+    private String biographie;
     @ManyToMany
     private List<Client> clients;
 
@@ -32,9 +35,14 @@ public class Medium implements Serializable {
     public Medium() {
     }
 
-    public Medium(String nom) {
+    public Medium(String civilite, String nom, String talent, String biographie) {
+        this.civilite = civilite;
         this.nom = nom;
+        this.talent = talent;
+        this.biographie = biographie;
     }
+
+   
 
     public String getNom() {
         return nom;

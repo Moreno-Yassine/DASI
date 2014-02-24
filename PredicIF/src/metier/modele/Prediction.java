@@ -22,15 +22,13 @@ public class Prediction implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int numPrediction;
-    private int force;
-    private String contenu;
-    private String type;
+    protected int numPrediction;
+    protected int force;
+    protected String contenu;
 
-    public Prediction(int force, String contenu, String type) {
+    public Prediction(int force, String contenu) {
         this.force = force;
         this.contenu = contenu;
-        this.type = type;
     }
 
     protected Prediction() {
@@ -47,11 +45,5 @@ public class Prediction implements Serializable {
     public String getContenu() {
         return contenu;
     }
-
-    public String getType() {
-        return type;
-    }
-    
-    
     
 }
