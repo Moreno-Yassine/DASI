@@ -13,6 +13,10 @@ import java.util.Calendar;
 import java.util.Date;
 import metier.modele.Client;
 import metier.modele.Medium;
+import metier.modele.PredictionAmour;
+import metier.modele.PredictionSante;
+import metier.modele.PredictionTravail;
+import metier.modele.Zodiac;
 import metier.service.ServiceVoyance;
 
 /**
@@ -120,10 +124,8 @@ public class LectureDonneesCsv {
         
         
         // Lecture des lignes
-        while ((nextLine = this.lecteurFichier.readNext()) != null) {
-        
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {    
             creerClient(nextLine);
-            
             // Limite (ou -1 si pas de limite)
             if ( !(limite < 0) && (--limite < 1) ) {
                 break;
@@ -138,13 +140,87 @@ public class LectureDonneesCsv {
          // En-tete du fichier CSV
         nextLine = this.lecteurFichier.readNext();
         afficherEnTeteCsv(nextLine);
-        
+  
         
         // Lecture des lignes
         while ((nextLine = this.lecteurFichier.readNext()) != null) {
-        
             creerMedium(nextLine);
-            
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+    public void lirePredictionAmour(int limite) throws IOException {
+
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+  
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+            creerPredictionAmour(nextLine);
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+    public void lirePredictionTravail(int limite) throws IOException {
+
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+  
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+            creerPredictionTravail(nextLine);
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+    public void lirePredictionSante(int limite) throws IOException {
+
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+  
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+            creerPredictionSante(nextLine);
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+    public void lireZodiac(int limite) throws IOException {
+
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+  
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+            creerZodiac(nextLine);
             // Limite (ou -1 si pas de limite)
             if ( !(limite < 0) && (--limite < 1) ) {
                 break;
@@ -154,9 +230,8 @@ public class LectureDonneesCsv {
     }
     
     /**
-     * Créée un Client à partir de sa description.
-     * La date de naissance est notamment interpétée comme un objet Date.
-     * @param descriptionClient Ligne du fichier CSV de Clients.
+     * Créée un Medium à partir de sa description.
+     * @param descriptionMedium Ligne du fichier CSV de Mediums.
      */
     public void creerMedium(String [] descriptionMedium){
         String civilite = descriptionMedium[0];
@@ -167,6 +242,59 @@ public class LectureDonneesCsv {
         Medium medium = new Medium(descriptionMedium[0],descriptionMedium[1],descriptionMedium[2],descriptionMedium[3]);
         ServiceVoyance.creerMedium(medium);
     }
+    /**
+     * Créée une PredictionAmour à partir de sa description.
+     * @param descriptionPredA Ligne du fichier CSV de PredictionsAmour.
+     */
+    public void creerPredictionAmour(String [] descriptionPredA){
+        int force = Integer.parseInt(descriptionPredA[0]);
+        String contenu = descriptionPredA[1];
+        String part = descriptionPredA[2];
+        
+        PredictionAmour pa = new PredictionAmour(force,contenu,part);
+        ServiceVoyance.creerPrediction(pa);
+    }
+    /**
+     * Créée une PredictionTravail à partir de sa description.
+     * @param descriptionPredT Ligne du fichier CSV de PredictionsTravail.
+     */
+    public void creerPredictionTravail(String [] descriptionPredT){
+        int force = Integer.parseInt(descriptionPredT[0]);
+        String contenu = descriptionPredT[1];
+        
+        PredictionTravail pt = new PredictionTravail(force,contenu);
+        ServiceVoyance.creerPrediction(pt);
+    }
+    /**
+     * Créée une PredictionSante à partir de sa description.
+     * @param descriptionPredS Ligne du fichier CSV de PredictionsSante.
+     */
+    public void creerPredictionSante(String [] descriptionPredS){
+        int force = Integer.parseInt(descriptionPredS[0]);
+        String contenu = descriptionPredS[1];
+        String conseil = descriptionPredS[2];
+        
+        PredictionSante ps = new PredictionSante(force,contenu,conseil);
+        ServiceVoyance.creerPrediction(ps);
+    }
+    /**
+     * Créée un Zodiac à partir de sa description.
+     * @param descriptionZodiac Ligne du fichier CSV de Zodiac.
+     */
+    public void creerZodiac(String [] descriptionZodiac){
+        String nom = descriptionZodiac[0];
+        int mois = Integer.parseInt(descriptionZodiac[1]);
+        String moisLettre = descriptionZodiac[2];
+        String element = descriptionZodiac[3];
+        
+        Zodiac z = new Zodiac(nom,mois,moisLettre,element);
+        ServiceVoyance.creerZodiac(z);
+    }
+    /**
+     * Créée un Client à partir de sa description.
+     * La date de naissance est notamment interpétée comme un objet Date.
+     * @param descriptionClient Ligne du fichier CSV de Clients.
+     */
     public void creerClient(String[] descriptionClient) {
         
         String civilite = descriptionClient[0];
@@ -242,36 +370,4 @@ public class LectureDonneesCsv {
         
     }
     
-    /**
-     * Cette méthode main() permet de tester cette classe avant de l'intégrer dans votre code.
-     * Elle exploite initialement un fichier de Client et un fichier de Pays, en limitant la lecture aux
-     * 10 premiers éléments de chaque fichier.
-     * @param args non utilisé ici
-     */
-    public static void main(String[] args) {
-        
-        try {
-            String fichierClients = "C:\\Temp\\PredictIF-Clients.csv";
-            String fichierPays = "C:\\Temp\\IFRoutard-Pays.csv";
-            
-            LectureDonneesCsv lectureDonneesCsv_Clients = new LectureDonneesCsv(fichierClients);
-            
-            // Pour tester: limite à 10
-            lectureDonneesCsv_Clients.lireClients(10);
-            // Puis, quand tout est au point!
-            //lectureDonneesCsv.lireClients(-1);
-
-            lectureDonneesCsv_Clients.fermer();
-
-            LectureDonneesCsv lectureDonneesCsv_Pays = new LectureDonneesCsv(fichierPays);
-            
-            lectureDonneesCsv_Pays.lirePays(10);
-            
-            lectureDonneesCsv_Pays.fermer();
-            
-        } catch (IOException ex) {
-            ex.printStackTrace(System.err);
-        }
-
-    }
 }

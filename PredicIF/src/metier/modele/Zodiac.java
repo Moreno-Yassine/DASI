@@ -19,22 +19,22 @@ import javax.persistence.Id;
 public class Zodiac implements Serializable {
     
     private int mois;
+    private String element;
+    private String moislettre;
     
     @Id
     private String nom;
 
-    public Zodiac(int mois, String nom) {
+    public Zodiac(String nom,int mois,String moislettre,String element) {
         this.mois = mois;
+        this.element = element;
+        this.moislettre = moislettre;
         this.nom = nom;
     }
+
+
     
     protected Zodiac(){}
-    
-    public String caracteristiques(){
-        String buff;
-        buff= this.nom +" "+ this.mois;
-        return buff;
-    }
 
     public String getNom() {
         return nom;

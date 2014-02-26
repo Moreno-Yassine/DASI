@@ -1,8 +1,8 @@
-Mon Feb 24 17:47:03 CET 2014 : Apache Derby Serveur réseau - 10.8.3.0 - (1405108) démarré et prêt à accepter les connexions sur le port 1527
+Wed Feb 26 08:53:22 CET 2014 : Apache Derby Serveur réseau - 10.8.3.0 - (1405108) démarré et prêt à accepter les connexions sur le port 1527
 ----------------------------------------------------------------
-Mon Feb 24 17:47:03 CET 2014:
-Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.8.3.0 - (1405108) : instance a816c00e-0144-64ca-e751-00002e0c3434 
-dans le répertoire de base de données C:\Users\Slifer\Documents\Projects\DASI\PredicIF\Database\predictif  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@19134f4
+Wed Feb 26 08:53:23 CET 2014:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.8.3.0 - (1405108) : instance a816c00e-0144-6d2f-03e3-00002e0c3434 
+dans le répertoire de base de données C:\Users\Slifer\Documents\Projects\DASI\PredicIF\Database\predictif  avec le chargeur de classe sun.misc.Launcher$AppClassLoader@47858e
 
 java.vendor=Oracle Corporation
 java.runtime.version=1.7.0_45-b18
@@ -13,4 +13,4 @@ os.version=6.1
 derby.system.home=C:\Users\Slifer\Documents\Projects\DASI\PredicIF\Database
 Chargeur de classe de la base de données démarré - derby.database.classpath=''
 ----------------------------------------------------------------
-Mon Feb 24 17:56:10 CET 2014 : fermeture du moteur Derby
+Wed Feb 26 09:37:30 CET 2014 : fermeture du moteur Derby

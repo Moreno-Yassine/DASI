@@ -14,7 +14,7 @@ public class PredictionSante extends Prediction{
 
     private String Conseil;
 
-    public PredictionSante(String Conseil, int force, String contenu) {
+    public PredictionSante(int force, String contenu, String Conseil) {
         super(force, contenu);
         this.Conseil = "conseil :"+ Conseil;
     }

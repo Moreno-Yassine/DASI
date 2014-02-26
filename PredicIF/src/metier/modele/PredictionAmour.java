@@ -6,23 +6,23 @@
 
 package metier.modele;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author Slifer
  */
+@Entity
 public class PredictionAmour extends Prediction{
     
-    private Zodiac partenaire;
+    private String partenaire;
 
-    public PredictionAmour(Zodiac partenaire, int force, String contenu) {
+    protected PredictionAmour() {
+    }
+
+    public PredictionAmour(int force, String contenu,String partenaire) {
         super(force, contenu);
         this.partenaire = partenaire;
     }
-
-    public Zodiac getPartenaire() {
-        return partenaire;
-    }
-    
-    
     
 }
