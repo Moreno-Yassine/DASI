@@ -20,7 +20,6 @@ public class Saisie {
         return chaineLue;
 
     }
-
     public static Integer lireInteger(String invite) {
         Integer valeurLue = null;
         try {
@@ -31,7 +30,6 @@ public class Saisie {
         }      
         return valeurLue;
     }
-
      public static Integer lireInteger(String invite, List<Integer> valeursPossibles) {
         Integer valeurLue = null;
         try {

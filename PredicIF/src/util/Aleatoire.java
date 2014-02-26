@@ -58,11 +58,6 @@ public class Aleatoire {
         return itemIndices;
     }
     
-    /**
-     * Cette méthode main() permet de tester cette classe avant de l'intégrer dans votre code.
-     * Elle utilise chacune des méthodes (statiques) de la classe pour illustrer leur fonctionnement.
-     * @param args non utilisé ici
-     */
     public static void main(String[] args) {
         
         int i = random(100); // 0 <= i < 100
