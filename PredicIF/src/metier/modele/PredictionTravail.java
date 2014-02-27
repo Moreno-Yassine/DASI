@@ -6,11 +6,17 @@
 
 package metier.modele;
 
+import javax.persistence.Entity;
+
 /**
  *
  * @author Slifer
  */
+@Entity
 public class PredictionTravail extends Prediction{
+
+    protected PredictionTravail() {
+    }
 
     public PredictionTravail(int force, String contenu) {
         super(force, contenu);

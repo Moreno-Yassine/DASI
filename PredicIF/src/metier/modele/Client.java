@@ -37,12 +37,14 @@ public class Client implements Serializable {
     private Zodiac signe;
     @ManyToMany(mappedBy = "clients")
     private List<Medium> mediumsfav;
+    @ManyToOne
+    private Employe superviseur;
     
 
     protected Client() {
     }
 
-    public Client(String civilite, String nom, String prenom, Date date, String adresse, String telephone, String email, Zodiac signe, List<Medium> mediumsfav) {
+    public Client(String civilite, String nom, String prenom, Date date, String adresse, String telephone, String email, Zodiac signe, List<Medium> mediumsfav,Employe emp) {
         this.civilite = civilite;
         this.nom = nom;
         this.prenom = prenom;
@@ -52,14 +54,7 @@ public class Client implements Serializable {
         this.email = email;
         this.signe = signe;
         this.mediumsfav = mediumsfav;
+        this.superviseur=emp;
     }
 
-    public String caracteristiques(){
-        
-        String buff;
-        buff= this.civilite +" "+ this.nom +" "+ this.prenom +" "+" "+ this.adresse +" "+ this.telephone
-                +" "+ this.email+" "+ this.signe.getNom();
-        return buff;
-    }
-       
 }

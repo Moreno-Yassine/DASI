@@ -37,6 +37,17 @@ public class PredicIF {
        
         }
         
+        LectureDonneesCsv E;
+        try {
+            E = new LectureDonneesCsv("C:\\Users\\Slifer\\Documents\\Projects\\DASI\\PredicIF\\src\\Données\\PredictIF-Employes.csv");         
+            E.lireEmploye(100);           
+            E.fermer();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PredicIF.class.getName()).log(Level.SEVERE, null, ex);
+       
+        }
+        
         LectureDonneesCsv L;
         try {
             L = new LectureDonneesCsv("C:\\Users\\Slifer\\Documents\\Projects\\DASI\\PredicIF\\src\\Données\\PredictIF-Clients.csv");         

@@ -2,6 +2,7 @@
 package metier.service;
 
 import dao.ClientDao;
+import dao.EmployeDao;
 import dao.JpaUtil;
 import dao.MediumDao;
 import dao.PredictionDao;
@@ -9,9 +10,11 @@ import dao.ZodiacDao;
 import java.util.ArrayList;
 import java.util.List;
 import metier.modele.Client;
+import metier.modele.Employe;
 import metier.modele.Medium;
 import metier.modele.Prediction;
 import metier.modele.Zodiac;
+import util.Aleatoire;
 
 /**
  *
@@ -49,6 +52,14 @@ public class ServiceVoyance {
        JpaUtil.creerEntityManager();
         JpaUtil.ouvrirTransaction();
         PredictionDao.createPrediction(p);
+        JpaUtil.validerTransaction();
+        JpaUtil.fermerEntityManager(); 
+    }
+    public static void creerEmploye (Employe e)
+    {
+       JpaUtil.creerEntityManager();
+        JpaUtil.ouvrirTransaction();
+        EmployeDao.createEmploye(e);
         JpaUtil.validerTransaction();
         JpaUtil.fermerEntityManager(); 
     }
@@ -124,9 +135,23 @@ public class ServiceVoyance {
         JpaUtil.fermerEntityManager();
         return result;
     }
+    public static List<Employe> listeEmploye()
+    {
+        JpaUtil.creerEntityManager();
+        List<Employe> result = EmployeDao.findAllEmployes();
+        JpaUtil.fermerEntityManager();
+        return result; 
+    }
+   /* public static List<Client> listeClientsPourEmploye (Employe e)
+    {
+        JpaUtil.creerEntityManager();
+        List<Client> result = EmployeDao.findRelatedClients(e);
+        JpaUtil.fermerEntityManager();
+        return result;
+    }*/
+       
     
-        //Services  annexes
-        
+//Services  annexes        
         public static Zodiac compatible (int mois)
         {
         JpaUtil.creerEntityManager();
@@ -140,26 +165,23 @@ public class ServiceVoyance {
         List<Medium> mediumGeneral = listeMedium();
         List<Medium> mediumClient = new ArrayList<Medium>();
         int[] nbTombes = new int[5];
-        boolean correct = false;
         for (int i=0; i < nbMedium; i++){
-            int medium = 0;
-            int indice = 0;
-           // while(correct == false){
-             
+            int medium;
             int buffer =(int) (Math.random()* mediumGeneral.size());
-            //correct = testRedondance( nbTombes,buffer );
             medium=buffer;
-            
-            //}
-            nbTombes[indice] = medium;
-            indice ++;
             mediumClient.add(mediumGeneral.get(medium)); 
             
             }
-        
         return mediumClient;
-       
         }
+        
+        public static Employe affectationEmploye()
+        {
+            List<Employe> all = listeEmploye();
+            int rand = Aleatoire.random(0,all.size()-1);
+            return all.get(rand);
+        }
+        
         static boolean testRedondance (int[] Ref, int Teste){
             for(int i=0; i<5; i++){
                 if(Teste == Ref[i]){

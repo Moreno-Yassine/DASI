@@ -7,6 +7,9 @@
     <class>metier.modele.Medium</class>
     <class>metier.modele.Prediction</class>
     <class>metier.modele.PredictionAmour</class>
+    <class>metier.modele.PredictionSante</class>
+    <class>metier.modele.PredictionTravail</class>
+    <class>metier.modele.Employe</class>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/predictif"/>
       <property name="javax.persistence.jdbc.password" value="mpompompo"/>

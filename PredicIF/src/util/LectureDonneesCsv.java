@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import metier.modele.Client;
+import metier.modele.Employe;
 import metier.modele.Medium;
 import metier.modele.PredictionAmour;
 import metier.modele.PredictionSante;
@@ -229,6 +230,26 @@ public class LectureDonneesCsv {
 
     }
     
+    public void lireEmploye(int limite) throws IOException {
+
+        String[] nextLine;
+
+         // En-tete du fichier CSV
+        nextLine = this.lecteurFichier.readNext();
+        afficherEnTeteCsv(nextLine);
+  
+        
+        // Lecture des lignes
+        while ((nextLine = this.lecteurFichier.readNext()) != null) {
+            creerEmploye(nextLine);
+            // Limite (ou -1 si pas de limite)
+            if ( !(limite < 0) && (--limite < 1) ) {
+                break;
+            }
+        }
+
+    }
+    
     /**
      * Créée un Medium à partir de sa description.
      * @param descriptionMedium Ligne du fichier CSV de Mediums.
@@ -306,68 +327,33 @@ public class LectureDonneesCsv {
         String email = descriptionClient[6];
         
         System.out.println("Client: "+  civilite + " " + nom + " " + prenom + ", né le " + formatDate(dateNaissance) + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
-        //String civilite, String nom, String prenom, int journaissance, int moisnaissance, int anneenaissance, String adresse, String telephone, String email, Zodiac signe, List<Medium> mediumsfav
         Calendar C = Calendar.getInstance();
         C.setTime(dateNaissance);
-        //System.out.println(C.get(C.MONTH));
-       Client client = new Client(civilite, nom, prenom, dateNaissance, adresse, telephone, email,ServiceVoyance.compatible(C.get(C.MONTH)+1),ServiceVoyance.creationListe()) ;
-        // À implémenter...
-        //Client client = new Client(civilite,nom,prenom,dateNaissance,adresse,telephone,email);
-        //System.out.println(client);
+       Client client = new Client(civilite, nom, prenom, dateNaissance, adresse, telephone, email,ServiceVoyance.compatible(C.get(C.MONTH)+1),ServiceVoyance.creationListe(),ServiceVoyance.affectationEmploye()) ;
        ServiceVoyance.creerClient(client);
         
     }
-
     /**
-     * Lit le fichier CSV, affiche son en-tête, puis appelle la création de Pays pour chaque ligne.
-     * @param limite Nombre maximum de lignes à lire ou -1 pour ne pas limiter
-     * @throws IOException 
+     * Créée un Employe à partir de sa description.
+     * La date de naissance est notamment interpétée comme un objet Date.
+     * @param descriptionEmploye Ligne du fichier CSV de Clients.
      */
-    public void lirePays(int limite) throws IOException {
-
-        String[] nextLine;
-
-         // En-tete du fichier CSV
-        nextLine = this.lecteurFichier.readNext();
-        afficherEnTeteCsv(nextLine);
+    public void creerEmploye(String[] descriptionEmploye) {
         
+        String civilite = descriptionEmploye[0];
+        String nom = descriptionEmploye[1];
+        String prenom = descriptionEmploye[2];
+        Date dateNaissance = parseDate(descriptionEmploye[3]);
+        String adresse = descriptionEmploye[4];
+        String telephone = descriptionEmploye[5];
+        String email = descriptionEmploye[6];
         
-        // Lecture des lignes
-        while ((nextLine = this.lecteurFichier.readNext()) != null) {
-        
-            creerPays(nextLine);
-            
-            // Limite (ou -1 si pas de limite)
-            if ( !(limite < 0) && (--limite < 1) ) {
-                break;
-            }
-        }
-
-    }
-    
-    /**
-     * Créée un Pays à partir de sa description.
-     * La superficie et la population sont notamment interpétées comme des nombres.
-     * @param descriptionClient Ligne du fichier CSV de Pays.
-     */
-    public void creerPays(String[] descriptionPays) {
-        
-        String nom = descriptionPays[0];
-        String code = descriptionPays[1];
-        String region = descriptionPays[2];
-        String capitale = descriptionPays[3];
-        String langues = descriptionPays[4];
-        Integer superficie = Integer.parseInt(descriptionPays[5]);
-        Float population = Float.parseFloat(descriptionPays[6]);
-        String regime = descriptionPays[7];
-        
-        System.out.println("Pays: "+  nom + " [" + code + "] (" + regime + "), Capitale: " + capitale + ", Région: " + region + ", Langues: " + langues + ", " + superficie + " km², " + population + " millions d'hbitants");
-        
-        // À implémenter...
-        //Pays pays = new Pays(code,nom,capitale,population,superficie,langues);
-        //System.out.println(pays);
-        //Service.creerPays(pays);
+        System.out.println("Employé: "+  civilite + " " + nom + " " + prenom + ", né le " + formatDate(dateNaissance) + ", habitant à " + adresse + ", téléphone: " + telephone + ", e-mail: " + email);
+  
+        Calendar C = Calendar.getInstance();
+        C.setTime(dateNaissance);
+       Employe e = new Employe(civilite, nom, prenom, dateNaissance, adresse, telephone, email) ;
+       ServiceVoyance.creerEmploye(e);
         
     }
-    
 }
