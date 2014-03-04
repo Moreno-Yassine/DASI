@@ -4,10 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Slifer/Documents/Projects/DASI/PredicIF/src/metier/service/ServiceVoyance.java</file>
-            <file>file:/C:/Users/Slifer/Documents/Projects/DASI/PredicIF/src/dao/EmployeDao.java</file>
-            <file>file:/C:/Users/Slifer/Documents/Projects/DASI/PredicIF/src/META-INF/persistence.xml</file>
-            <file>file:/C:/Users/Slifer/Documents/Projects/DASI/PredicIF/src/metier/modele/Client.java</file>
+            <file>file:/C:/Users/Slifer/Documents/Projects/DASI/PredicIF/src/util/LectureDonneesCsv.java</file>
             <file>file:/C:/Users/Slifer/Documents/Projects/DASI/PredicIF/src/vue/PredicIF.java</file>
+            <file>file:/C:/Users/Slifer/Documents/Projects/DASI/PredicIF/src/metier/modele/Horoscope.java</file>
         </group>
     </open-files>
 </project-private>

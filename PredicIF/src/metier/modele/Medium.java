@@ -42,12 +42,8 @@ public class Medium implements Serializable {
         this.biographie = biographie;
     }
 
-   
-
     public String getNom() {
         return nom;
     }
      
-    
-    
 }

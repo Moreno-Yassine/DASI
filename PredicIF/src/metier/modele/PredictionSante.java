@@ -25,6 +25,8 @@ public class PredictionSante extends Prediction{
         this.Conseil = "conseil :"+ Conseil;
     }
 
-    
+    public String getConseil() {
+        return Conseil;
+    }
     
 }

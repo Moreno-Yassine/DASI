@@ -11,8 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import metier.modele.Client;
 import metier.modele.Employe;
+import metier.modele.Horoscope;
 import metier.modele.Medium;
 import metier.modele.Prediction;
+import metier.modele.PredictionAmour;
+import metier.modele.PredictionSante;
+import metier.modele.PredictionTravail;
 import metier.modele.Zodiac;
 import util.Aleatoire;
 
@@ -21,6 +25,11 @@ import util.Aleatoire;
  * @author Administrateur
  */
 public class ServiceVoyance {
+    public static String horoscope(int numClient, int numPa, int numPs, int numPt)
+    {
+        Horoscope h = new Horoscope (idClient(numClient),idPredAmour(numPa),idPredSante(numPs),idPredTravail(numPt));
+        return h.getFormat();
+    }
     
     // Methodes de créations d'entités
     public static void creerClient(Client c)
@@ -64,7 +73,37 @@ public class ServiceVoyance {
         JpaUtil.fermerEntityManager(); 
     }
     
-    // Methodes de get de list persist
+    // Methodes de get de singles
+    public static Client idClient(int id)
+    {
+        JpaUtil.creerEntityManager();
+        Client result = ClientDao.findbyId(id);
+        JpaUtil.fermerEntityManager();
+        return result; 
+    }
+    public static PredictionAmour idPredAmour(int id)
+    {
+        JpaUtil.creerEntityManager();
+        PredictionAmour result =(PredictionAmour)PredictionDao.getPrediction(id);
+        JpaUtil.fermerEntityManager();
+        return result;
+    }
+    public static PredictionSante idPredSante(int id)
+    {
+        JpaUtil.creerEntityManager();
+        PredictionSante result =(PredictionSante)PredictionDao.getPrediction(id);
+        JpaUtil.fermerEntityManager();
+        return result;
+    }
+    public static PredictionTravail idPredTravail(int id)
+    {
+        JpaUtil.creerEntityManager();
+        PredictionTravail result =(PredictionTravail)PredictionDao.getPrediction(id);
+        JpaUtil.fermerEntityManager();
+        return result;
+    }
+    
+    // Methodes de get de list d'entités
     public static List<Client> listeClient()
     {
         JpaUtil.creerEntityManager();

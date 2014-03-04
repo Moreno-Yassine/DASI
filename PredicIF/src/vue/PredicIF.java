@@ -4,6 +4,7 @@ import java.io.IOException;
 import util.LectureDonneesCsv;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import metier.service.ServiceVoyance;
 
 /**
  *
@@ -69,5 +70,29 @@ public class PredicIF {
             Logger.getLogger(PredicIF.class.getName()).log(Level.SEVERE, null, ex);
        
         }
+        
+        LectureDonneesCsv PS;
+        try {
+            PS = new LectureDonneesCsv("C:\\Users\\Slifer\\Documents\\Projects\\DASI\\PredicIF\\src\\Données\\PredictIF-Predictions-Sante.csv");         
+            PS.lirePredictionSante(100);           
+            PS.fermer();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PredicIF.class.getName()).log(Level.SEVERE, null, ex);
+       
+        }
+        LectureDonneesCsv PT;
+        try {
+            PT = new LectureDonneesCsv("C:\\Users\\Slifer\\Documents\\Projects\\DASI\\PredicIF\\src\\Données\\PredictIF-Predictions-Travail.csv");         
+            PT.lirePredictionTravail(100);           
+            PT.fermer();
+            
+        } catch (IOException ex) {
+            Logger.getLogger(PredicIF.class.getName()).log(Level.SEVERE, null, ex);
+       
+        }
+        
+        String buff = ServiceVoyance.horoscope(55,76, 200, 279);
+        System.out.println(buff);
     }
 }

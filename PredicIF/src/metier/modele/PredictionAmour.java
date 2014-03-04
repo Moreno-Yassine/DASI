@@ -24,5 +24,9 @@ public class PredictionAmour extends Prediction{
         super(force, contenu);
         this.partenaire = partenaire;
     }
+
+    public String getPartenaire() {
+        return partenaire;
+    }
     
 }

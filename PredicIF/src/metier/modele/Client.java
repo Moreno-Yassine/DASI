@@ -57,4 +57,29 @@ public class Client implements Serializable {
         this.superviseur=emp;
     }
 
+    public String getCivilite() {
+        return civilite;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public String getPrenom() {
+        return prenom;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public List<Medium> getMediumsfav() {
+        return mediumsfav;
+    }
+
+    
 }
