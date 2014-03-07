@@ -81,5 +81,13 @@ public class Client implements Serializable {
         return mediumsfav;
     }
 
+    public String getAdresse() {
+        return adresse;
+    }
+
+    public Zodiac getSigne() {
+        return signe;
+    }
+
     
 }

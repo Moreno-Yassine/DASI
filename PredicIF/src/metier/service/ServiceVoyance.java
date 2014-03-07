@@ -7,7 +7,10 @@ import dao.JpaUtil;
 import dao.MediumDao;
 import dao.PredictionDao;
 import dao.ZodiacDao;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import metier.modele.Client;
 import metier.modele.Employe;
@@ -190,7 +193,7 @@ public class ServiceVoyance {
     }*/
        
     
-//Services  annexes        
+//Services  annexes 
         public static Zodiac compatible (int mois)
         {
         JpaUtil.creerEntityManager();
