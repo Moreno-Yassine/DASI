@@ -31,10 +31,13 @@ public class EmployeDao {
         List<Employe> listsearch = q.getResultList() ;
         return listsearch;
     }
-   // public static List<Client> findRelatedClients(Employe e)
-    //{
-        
-    //}
+   public static List<Client> findRelatedClients(Employe e)
+    {
+        EntityManager em = JpaUtil.obtenirEntityManager();
+        Query q = em.createQuery("SELECT c FROM Client c WHERE c.superviseur.numEmploye = e.numEmploye");
+        List<Client> listsearch = q.getResultList() ;
+        return listsearch;
+    }
     public static Employe findEmployeById (int id)
     {
         EntityManager em = JpaUtil.obtenirEntityManager();

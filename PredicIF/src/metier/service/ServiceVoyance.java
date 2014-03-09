@@ -3,17 +3,16 @@ package metier.service;
 
 import dao.ClientDao;
 import dao.EmployeDao;
+import dao.EntreprisePartenaireDao;
 import dao.JpaUtil;
 import dao.MediumDao;
 import dao.PredictionDao;
 import dao.ZodiacDao;
-import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import metier.modele.Client;
 import metier.modele.Employe;
+import metier.modele.EntreprisePartenaire;
 import metier.modele.Horoscope;
 import metier.modele.Medium;
 import metier.modele.Prediction;
@@ -79,6 +78,14 @@ public class ServiceVoyance {
         EmployeDao.createEmploye(e);
         JpaUtil.validerTransaction();
         JpaUtil.fermerEntityManager(); 
+    }
+    public static void creerEP(EntreprisePartenaire ep)
+    {
+        JpaUtil.creerEntityManager();
+        JpaUtil.ouvrirTransaction();
+        EntreprisePartenaireDao.createEP(ep);
+        JpaUtil.validerTransaction();
+        JpaUtil.fermerEntityManager();
     }
     
     // Methodes de get de singles
@@ -189,13 +196,20 @@ public class ServiceVoyance {
         JpaUtil.fermerEntityManager();
         return result; 
     }
-   /* public static List<Client> listeClientsPourEmploye (Employe e)
+    public static List<EntreprisePartenaire> listEP()
+    {
+       JpaUtil.creerEntityManager();
+        List<EntreprisePartenaire> result = EntreprisePartenaireDao.findAllEP();
+        JpaUtil.fermerEntityManager();
+        return result;  
+    }
+    public static List<Client> listeClientsPourEmploye (Employe e)
     {
         JpaUtil.creerEntityManager();
         List<Client> result = EmployeDao.findRelatedClients(e);
         JpaUtil.fermerEntityManager();
         return result;
-    }*/
+    }
        
     
 //Services  annexes 

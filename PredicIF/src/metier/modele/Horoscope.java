@@ -37,18 +37,19 @@ public class Horoscope {
         List<Medium> buffMed = c.getMediumsfav();
         for (int i=0; i<buffMed.size();i++)
         {
-            buffer+= buffMed.get(i).getNom()+" ";
+            buffer+= buffMed.get(i).getNom()+", ";
         }
+        int voyantDuJour = Aleatoire.random(0, buffMed.size());
+        buffer +="Cher "+ c.getPrenom()+", aujourd'hui votre voyance vous est offerte par "+ buffMed.get(voyantDuJour).getNom()+"\r\n";
         buffer += "\r\n" +"\r\n";
-        buffer += "Amour : " + pa.getContenu()+"\r\n";
+        buffer += "Amour["+pa.getForce()+"] : " + pa.getContenu()+"\r\n";
         buffer += "Signe Partenaire : "+pa.getPartenaire()+"\r\n"+"\r\n";
-        buffer += "Travail : " + pt.getContenu()+"\r\n"+"\r\n";
-        buffer += "Sante : "+ps.getContenu()+"\r\n";
+        buffer += "Travail["+pt.getForce()+"] : " + pt.getContenu()+"\r\n"+"\r\n";
+        buffer += "Sante["+ps.getForce()+"] : "+ps.getContenu()+"\r\n";
         buffer += "Conseil : "+ ps.getConseil() +"\r\n"+"\r\n";
         
         buffer += "Cordialement"+"\r\n";
-        int voyantDuJour = Aleatoire.random(0, buffMed.size());
-        buffer +="Votre Medium du jour : "+ buffMed.get(voyantDuJour).getNom()+"\r\n";
+        
         
         return buffer;
     }
@@ -56,10 +57,10 @@ public class Horoscope {
     public String getContenu()
     {
         String buffer;
-        buffer = "Amour : " + pa.getContenu()+"\r\n";
+        buffer = "Amour["+pa.getForce()+"] : " + pa.getContenu()+"\r\n";
         buffer += "Signe Partenaire : "+pa.getPartenaire()+"\r\n"+"\r\n";
-        buffer += "Travail : " + pt.getContenu()+"\r\n"+"\r\n";
-        buffer += "Sante : "+ps.getContenu()+"\r\n";
+        buffer += "Travail["+pt.getForce()+"] : " + pt.getContenu()+"\r\n"+"\r\n";
+        buffer += "Sante["+ps.getForce()+"] : "+ps.getContenu()+"\r\n";
         buffer += "Conseil : "+ ps.getConseil() +"\r\n"+"\r\n"; 
         return buffer;
     }
