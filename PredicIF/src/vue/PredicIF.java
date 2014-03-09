@@ -8,6 +8,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import metier.modele.Client;
 import metier.modele.Medium;
+import metier.modele.Prediction;
 import metier.service.ServiceVoyance;
 import util.Saisie;
 
@@ -17,9 +18,9 @@ import util.Saisie;
  */
 public class PredicIF {
     
-    public static void AffichageClient(Client c)
+    public static void affichageClient(Client c)
     {
-           System.out.println("Client: "+ c.getCivilite()+ " " +c.getNom() + " " +c.getPrenom() + ", habitant à " +c.getAdresse()+ ", téléphone: " 
+           System.out.println("Client "+c.getNumclient()+ " : "+ c.getCivilite()+ " " +c.getNom() + " " +c.getPrenom() + ", habitant à " +c.getAdresse()+ ", téléphone: " 
                    +c.getTelephone() + ", e-mail: " + c.getEmail()+ ", Signe :" +c.getSigne().getNom());
            System.out.print("Mediums Favoris : ");
            List<Medium> listMedium= c.getMediumsfav();
@@ -29,7 +30,11 @@ public class PredicIF {
            }
            System.out.println();
     }
-    
+
+    public static void affichagePrediction(Prediction p)
+    {
+           System.out.println(p.getNumPrediction()+ "  ["+p.getForce()+"]  "+p.getContenu());
+    }
     public static void main(String[] args) {
          LectureDonneesCsv M;
         try {
@@ -109,59 +114,124 @@ public class PredicIF {
             Logger.getLogger(PredicIF.class.getName()).log(Level.SEVERE, null, ex);
        
         }
+        boolean exit = false;
         
-        int choix = 0;
-        String choisirInvite = "Selectionnez l'action voulue :" +"\r\n" + "1 : Listes Clients  2 : Inscription Client  3 : Création Horoscope" +"\r\n";
-        List<Integer> permissive = new ArrayList();
-        permissive.add(1);
-        permissive.add(2);
-        permissive.add(3);
-        choix = Saisie.lireInteger(choisirInvite, permissive);
-        
-        switch (choix)
+        while (!exit)
         {
-            case 1 :
-                choisirInvite = "1 : Liste Complete, 2 : Recherche Par Nom";
-                choix = Saisie.lireInteger(choisirInvite, permissive);
-                if (choix == 1)
-                {
+            int choix = 0;
+            String choisirInvite = "Selectionnez l'action voulue :" +"\r\n" + "1 : Listes Clients  2 : Inscription Client  3 : Création Horoscope  4: Quitter" +"\r\n";
+            List<Integer> permissive = new ArrayList();
+            permissive.add(1);
+            permissive.add(2);
+            permissive.add(3);
+            permissive.add(4);
+            choix = Saisie.lireInteger(choisirInvite, permissive); // Lecture de la saisie
+
+            switch (choix)
+            {
+                case 1 :
+                    choisirInvite = "1 : Liste Complete, 2 : Recherche Par Nom";
+                    choix = Saisie.lireInteger(choisirInvite, permissive);
+                    if (choix == 1)
+                    {
+                        List<Client> listAffichage = ServiceVoyance.listeClient();
+                        for (int i=0; i<listAffichage.size();i++)
+                        {
+                            affichageClient(listAffichage.get(i));
+                        }
+                    }
+                    if (choix == 2)
+                    {
+                        choisirInvite = " Nom a chercher : ";
+                        String recherche = Saisie.lireChaine(choisirInvite);
+                        List<Client> listRecherche = ServiceVoyance.listeClientNom(recherche);
+                        for (int i=0; i<listRecherche.size();i++)
+                        {
+                            affichageClient(listRecherche.get(i));
+                        }
+                    }
+                    break;
+
+                case 2 :
+                    String[] description = new String[7];
+                    description[0] = Saisie.lireChaine("Veuillez saisir la Civilité du client : ");
+                    description[1] = Saisie.lireChaine("Veuillez saisir le Nom du client : ");
+                    description[2] = Saisie.lireChaine("Veuillez saisir le Prénom du client : ");
+                    description[3] = Saisie.lireChaine("Veuillez saisir la Date de Naissance du client (Format AAAA-MM-JJ) : ");
+                    description[4] = Saisie.lireChaine("Veuillez saisir l'Adresse du client : ");
+                    description[5] = Saisie.lireChaine("Veuillez saisir le Téléphone du client : ");
+                    description[6] = Saisie.lireChaine("Veuillez saisir l'E-mail du client : ");
+
+                    try {
+                     L = new LectureDonneesCsv("C:\\Users\\Slifer\\Documents\\Projects\\DASI\\PredicIF\\src\\Données\\PredictIF-Clients.csv");         
+                     L.creerClient(description);
+                    } catch (IOException ex) {
+                        Logger.getLogger(PredicIF.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                case 3 :
+                    int numClient;
+                    int numPa;
+                    int numPs;
+                    int numPt;
                     List<Client> listAffichage = ServiceVoyance.listeClient();
-                    for (int i=0; i<listAffichage.size();i++)
+                        for (int i=0; i<listAffichage.size();i++)
+                        {
+                            affichageClient(listAffichage.get(i));
+                        }
+                    choisirInvite = "Selectionnez Votre Client : " ; 
+                    numClient= Saisie.lireInteger(choisirInvite);
+                    List<Prediction> listPA = ServiceVoyance.listePredictionAmour();
+                    // Afficher List
+                        for (int i=0; i<listPA.size();i++)
+                        {
+                            affichagePrediction(listPA.get(i));
+                        }
+                    // getNuméro PA
+                    choisirInvite = "Selectionnez Votre Prediction Amour";
+                     numPa= Saisie.lireInteger(choisirInvite);
+                    List<Prediction> listPT = ServiceVoyance.listePredictionTravail();
+                    //Afficher List
+                        for (int i=0; i<listPA.size();i++)
+                        {
+                            affichagePrediction(listPT.get(i));
+                        }
+                    // getNuméroPT
+                    choisirInvite = "Selectionnez Votre Prediction Travail";
+                     numPt= Saisie.lireInteger(choisirInvite);
+                    List<Prediction> listPS = ServiceVoyance.listePredictionSante();
+                    //Afficher List
+                        for (int i=0; i<listPA.size();i++)
+                        {
+                            affichagePrediction(listPS.get(i));
+                        }
+                    //getNuméro PS
+                    choisirInvite = "Selectionnez Votre Prediction Sante";
+                     numPs= Saisie.lireInteger(choisirInvite);
+                    
+                    
+                    System.out.println("Apercu de l'Horoscope");
+                    System.out.println(ServiceVoyance.horoscope(numClient, numPa, numPs, numPt));
+                    System.out.println("Apercu de l'Email");
+                    System.out.println(ServiceVoyance.email(numClient, numPa, numPs, numPt));
+                    
+                    int envoi = Saisie.lireInteger(" 1:Envoyer 2:Annuler ");
+                    if (envoi == 1)
                     {
-                        AffichageClient(listAffichage.get(i));
+                       System.out.println("Horoscope envoyé"); 
                     }
-                }
-                if (choix == 2)
-                {
-                    choisirInvite = " Nom a chercher : ";
-                    String recherche = Saisie.lireChaine(choisirInvite);
-                    List<Client> listRecherche = ServiceVoyance.listeClientNom(recherche);
-                    for (int i=0; i<listRecherche.size();i++)
+                    else
                     {
-                        AffichageClient(listRecherche.get(i));
+                       System.out.println("Envoi annulé"); 
                     }
-                }
-                break;
-                
-            case 2 :
-                String[] description = new String[7];
-                description[0] = Saisie.lireChaine("Veuillez saisir la Civilité du client : ");
-                description[1] = Saisie.lireChaine("Veuillez saisir le Nom du client : ");
-                description[2] = Saisie.lireChaine("Veuillez saisir le Prénom du client : ");
-                description[3] = Saisie.lireChaine("Veuillez saisir la Date de Naissance du client (Format AAAA-MM-JJ) : ");
-                description[4] = Saisie.lireChaine("Veuillez saisir l'Adresse du client : ");
-                description[5] = Saisie.lireChaine("Veuillez saisir le Téléphone du client : ");
-                description[6] = Saisie.lireChaine("Veuillez saisir l'E-mail du client : ");
-                
-                try {
-                 L = new LectureDonneesCsv("C:\\Users\\Slifer\\Documents\\Projects\\DASI\\PredicIF\\src\\Données\\PredictIF-Clients.csv");         
-                 L.creerClient(description);
-                } catch (IOException ex) {
-                    Logger.getLogger(PredicIF.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                
-        }
+                    break;
+                    
+                case 4 :
+                    exit = true;
+                    break;
+            }
         
 
+         }
     }
 }

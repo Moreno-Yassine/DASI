@@ -9,7 +9,7 @@ import metier.modele.Employe;
 import metier.modele.Medium;
 import metier.modele.Zodiac;
 
-@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2014-03-07T02:32:43")
+@Generated(value="EclipseLink-2.5.1.v20130918-rNA", date="2014-03-09T20:42:44")
 @StaticMetamodel(Client.class)
 public class Client_ { 
 

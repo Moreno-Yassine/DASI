@@ -89,5 +89,10 @@ public class Client implements Serializable {
         return signe;
     }
 
+    public int getNumclient() {
+        return numclient;
+    }
+
+     
     
 }

@@ -31,7 +31,12 @@ public class ServiceVoyance {
     public static String horoscope(int numClient, int numPa, int numPs, int numPt)
     {
         Horoscope h = new Horoscope (idClient(numClient),idPredAmour(numPa),idPredSante(numPs),idPredTravail(numPt));
-        return h.getFormat();
+        return h.getContenu();
+    }
+    public static String email(int numClient, int numPa, int numPs, int numPt)
+    {
+        Horoscope h = new Horoscope (idClient(numClient),idPredAmour(numPa),idPredSante(numPs),idPredTravail(numPt));
+        return h.getEmail();
     }
     
     // Methodes de créations d'entités

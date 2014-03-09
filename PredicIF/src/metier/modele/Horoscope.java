@@ -27,7 +27,7 @@ public class Horoscope {
         this.pt = pt;
     }
     
-    public String getFormat()
+    public String getEmail()
     {
         String buffer;
         buffer = c.getCivilite() + c.getNom()+" "+ c.getPrenom() + "\r\n";
@@ -53,5 +53,14 @@ public class Horoscope {
         return buffer;
     }
     
-    
+    public String getContenu()
+    {
+        String buffer;
+        buffer = "Amour : " + pa.getContenu()+"\r\n";
+        buffer += "Signe Partenaire : "+pa.getPartenaire()+"\r\n"+"\r\n";
+        buffer += "Travail : " + pt.getContenu()+"\r\n"+"\r\n";
+        buffer += "Sante : "+ps.getContenu()+"\r\n";
+        buffer += "Conseil : "+ ps.getConseil() +"\r\n"+"\r\n"; 
+        return buffer;
+    }
 }
